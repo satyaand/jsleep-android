@@ -7,16 +7,67 @@
     android:background="@drawable/cloudbg"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textViewHelloUser"
+    <LinearLayout
+        android:id="@+id/linearLayoutPagination"
+        android:layout_width="409dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/buttonPrevPage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:backgroundTint="#2A70FA"
+            android:text="Prev" />
+
+        <Button
+            android:id="@+id/buttonNextPage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:backgroundTint="#2A70FA"
+            android:text="Next" />
+
+        <EditText
+            android:id="@+id/editTextPageNumber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_weight=".5"
+            android:ems="10"
+            android:inputType="number"
+            android:textAlignment="center"
+            tools:text="1" />
+
+        <Button
+            android:id="@+id/buttonGoPage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:backgroundTint="#2A70FA"
+            android:text="GO" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/list_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Hello, User!"
-        android:textSize="40sp"
-        android:textStyle="bold"
+        android:layout_height="0dp"
+        android:divider="@color/black"
+        android:dividerHeight="0.5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutPagination"
+        app:layout_constraintVertical_bias="0.52" />
 </androidx.constraintlayout.widget.ConstraintLayout>
