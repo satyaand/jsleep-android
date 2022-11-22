@@ -23,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     BaseApiService mApiService;
     EditText username, password;
     Context mContext;
+    public static Account accountCurrentlyLogged;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,8 @@ public class LoginActivity extends AppCompatActivity {
         logonButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Account account = requestAccount();
+                Account account = requestLogin();
+                // Account account = requestAccount();
                 // startActivity(new Intent(LoginActivity.this, MainActivity.class));
             }
         });
@@ -71,6 +73,24 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Account> call, Throwable t) {
                 Toast.makeText(mContext, "no Account id=0", Toast.LENGTH_SHORT).show();
+            }
+        });
+        return null;
+    }
+
+    protected Account requestLogin(){
+        mApiService.loginAccount(username.getText().toString(), password.getText().toString()).enqueue(new Callback<Account>() {
+            @Override
+            public void onResponse(Call<Account> call, Response<Account> response) {
+                if(response.isSuccessful()){
+                    accountCurrentlyLogged = response.body();
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Account> call, Throwable t) {
+                Toast.makeText(mContext, "Incorrent email/password combination", Toast.LENGTH_SHORT).show();
             }
         });
         return null;

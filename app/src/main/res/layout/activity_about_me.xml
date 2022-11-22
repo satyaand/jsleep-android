@@ -48,7 +48,6 @@
             android:layout_marginLeft="0.5dp"
             android:layout_weight="0.1"
             android:ems="10"
-            android:text="Satya Ananda"
             android:textAlignment="textEnd"
             android:textSize="16sp" />
     </LinearLayout>
@@ -82,7 +81,6 @@
             android:layout_marginLeft="0.5dp"
             android:ems="10"
             android:layout_weight=".1"
-            android:text="Satyaand@gmail.com"
             android:textAlignment="textEnd"
             android:textSize="16sp" />
     </LinearLayout>
@@ -115,7 +113,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft=".5dp"
             android:layout_weight="0.1"
-            android:text="0.0"
             android:ems="10"
             android:textAlignment="textEnd"
             android:textSize="16sp" />
