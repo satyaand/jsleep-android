@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Account> call, Throwable t) {
-                Toast.makeText(mContext, "Incorrent email/password combination", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Incorrect email/password combination", Toast.LENGTH_SHORT).show();
             }
         });
         return null;

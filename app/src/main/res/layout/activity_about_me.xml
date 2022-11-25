@@ -7,6 +7,108 @@
     android:background="@drawable/cloudbg"
     tools:context=".AboutMe">
 
+    <LinearLayout
+        android:id="@+id/linearRenterPhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="50dp"
+        android:orientation="horizontal"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearRenterAddress">
+
+        <TextView
+            android:id="@+id/textRenterPhoneField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="0.5dp"
+            android:layout_weight="2"
+            android:ems="10"
+            android:text="Phone Number"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textRenterPhoneValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0.5dp"
+            android:layout_weight="0.1"
+            android:ems="10"
+            android:textAlignment="textEnd"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearRenterName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="50dp"
+        android:orientation="horizontal"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearTopUp">
+
+        <TextView
+            android:id="@+id/textRenterNameField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="0.5dp"
+            android:layout_weight="2"
+            android:ems="10"
+            android:text="Name"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textRenterNameValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0.5dp"
+            android:layout_weight="0.1"
+            android:ems="10"
+            android:textAlignment="textEnd"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearRenterAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="50dp"
+        android:orientation="horizontal"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearRenterName">
+
+        <TextView
+            android:id="@+id/textRenterAddressField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="0.5dp"
+            android:layout_weight="2"
+            android:ems="10"
+            android:text="Address"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textRenterAddressValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0.5dp"
+            android:layout_weight="0.1"
+            android:ems="10"
+            android:textAlignment="textEnd"
+            android:textSize="16sp" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/textAccountDetails"
         android:layout_width="wrap_content"
@@ -69,8 +171,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="0.5dp"
-            android:ems="10"
             android:layout_weight="2"
+            android:ems="10"
             android:text="Email"
             android:textSize="16sp" />
 
@@ -79,8 +181,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0.5dp"
-            android:ems="10"
             android:layout_weight=".1"
+            android:ems="10"
             android:textAlignment="textEnd"
             android:textSize="16sp" />
     </LinearLayout>
@@ -139,7 +241,7 @@
             android:ems="10"
             android:hint="Amount"
             android:inputType="number"
-            android:textAlignment="center"/>
+            android:textAlignment="center" />
 
         <Button
             android:id="@+id/buttonTopUp"
@@ -149,8 +251,100 @@
             android:layout_marginRight="20dp"
             android:layout_weight=".5"
             android:backgroundTint="#2A70FA"
-            android:text="TOP UP"
-            android:onClick="processTopUpToast"/>
+            android:onClick="processTopUpToast"
+            android:text="TOP UP" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonStartRegisterRenter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="54dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="54dp"
+        android:layout_weight=".5"
+        android:backgroundTint="#2A70FA"
+        android:onClick="processTopUpToast"
+        android:text="REGISTER RENTER"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearTopUp" />
+
+    <LinearLayout
+        android:id="@+id/LayoutRegister"
+        android:layout_width="409dp"
+        android:layout_height="244dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="1dp"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearTopUp">
+
+        <EditText
+            android:id="@+id/editTextRenterName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:ems="10"
+            android:hint="Name"
+            android:inputType="textEmailAddress"
+            android:translationX="50dp" />
+
+        <EditText
+            android:id="@+id/editTextRenterAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:ems="10"
+            android:hint="Address"
+            android:inputType="textEmailAddress"
+            android:translationX="50dp" />
+
+        <EditText
+            android:id="@+id/editTextRenterPhoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:ems="10"
+            android:hint="Phone Number"
+            android:inputType="textEmailAddress"
+            android:translationX="50dp" />
+
+        <LinearLayout
+            android:id="@+id/LayoutOnRegisterButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:orientation="horizontal"
+            android:translationY="10dp">
+
+            <Button
+                android:id="@+id/buttonRegisterRenter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:backgroundTint="#2A70FA"
+                android:onClick="processTopUpToast"
+                android:text="REGISTER" />
+
+            <Button
+                android:id="@+id/buttonCancelRegister"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:backgroundTint="#2A70FA"
+                android:onClick="processTopUpToast"
+                android:text="CANCEL" />
+        </LinearLayout>
+
     </LinearLayout>
 
 

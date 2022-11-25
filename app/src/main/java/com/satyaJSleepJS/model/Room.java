@@ -31,7 +31,7 @@ public class Room extends Serializable {
     public BedType bedType;
 
     @SerializedName("facility")
-    public Facility facility;
+    public ArrayList<Facility> facility;
 
     public String toString(){
         return this.name;
