@@ -3,9 +3,8 @@ package com.satyaJSleepJS;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,8 +16,6 @@ import com.satyaJSleepJS.model.Account;
 import com.satyaJSleepJS.request.BaseApiService;
 import com.satyaJSleepJS.request.UtilsApi;
 
-import org.w3c.dom.Text;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,10 +23,10 @@ import retrofit2.Response;
 public class AboutMe extends AppCompatActivity {
     TextView name, email, balance;
     BaseApiService mApiService;
-    EditText renterNameVal, renterPhoneVal, renterAddressVal;
+    EditText renterNameVal, renterPhoneVal, renterAddressVal, topUpAmountText;
     Context mContext;
     LinearLayout layRegister, layRenterName, layRenterAddress, layRenterPhone;
-    Button regRenterButton, cancelRentButton, regButton;
+    Button regRenterButton, cancelRentButton, regButton, topUpButton;
     TextView regName, regAddress, regNumber;
 
     @Override
@@ -84,11 +81,20 @@ public class AboutMe extends AppCompatActivity {
             layRenterPhone.setVisibility(View.VISIBLE);
         }
         name = findViewById(R.id.textNameValue);
-        email = findViewById(R.id.textEmailValue);
-        balance = findViewById(R.id.textBalanceValue);
+        email = findViewById(R.id.textBedTypeValue);
+        balance = findViewById(R.id.textSizeValue);
         name.setText(LoginActivity.accountCurrentlyLogged.name);
         email.setText(LoginActivity.accountCurrentlyLogged.email);
-        balance.setText("Rp" + String.valueOf(LoginActivity.accountCurrentlyLogged.balance));
+        balance.setText("Rp" + String.format("%,.1f", LoginActivity.accountCurrentlyLogged.balance));
+
+        topUpButton = findViewById(R.id.buttonTopUp);
+        topUpAmountText = findViewById(R.id.editTopUpAmount);
+        topUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                requestTopUp();
+            }
+        });
     }
 
     public void processTopUpToast(View view){
@@ -102,15 +108,34 @@ public class AboutMe extends AppCompatActivity {
             public void onResponse(Call<Account> call, Response<Account> response) {
                 if(response.isSuccessful()){
                     layRegister.setVisibility(View.INVISIBLE);
-                    Toast.makeText(mContext, "Register success, please refresh the menu!", Toast.LENGTH_SHORT);
+                    Toast.makeText(mContext, "Register success!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(AboutMe.this, MainActivity.class));
                 }
             }
 
             @Override
             public void onFailure(Call<Account> call, Throwable t) {
-                Toast.makeText(mContext, "Register Renter Unsuccessful, please try again!", Toast.LENGTH_SHORT);
+                Toast.makeText(mContext, "Register Renter Unsuccessful, please try again!", Toast.LENGTH_SHORT).show();
             }
         });
         return null;
+    }
+
+    protected boolean requestTopUp(){
+        String topUpBalance = topUpAmountText.getText().toString();
+        System.out.println(Double.parseDouble(topUpBalance));
+        mApiService.topUp(LoginActivity.accountCurrentlyLogged.id, Double.parseDouble(topUpBalance)).enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                Toast.makeText(mContext, "Top-Up Successful!", Toast.LENGTH_SHORT).show();
+                balance.setText("Rp" + String.format("%,.1f", LoginActivity.accountCurrentlyLogged.balance));
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+                Toast.makeText(mContext, "Top-Up Failed!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        return false;
     }
 }

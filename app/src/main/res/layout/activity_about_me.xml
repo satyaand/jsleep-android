@@ -122,7 +122,7 @@
         app:layout_constraintVertical_bias="0.19" />
 
     <LinearLayout
-        android:id="@+id/linearName"
+        android:id="@+id/linearRoomName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
@@ -155,7 +155,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearEmail"
+        android:id="@+id/linearBedType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
@@ -164,10 +164,10 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearName">
+        app:layout_constraintTop_toBottomOf="@+id/linearRoomName">
 
         <TextView
-            android:id="@+id/textEmailField"
+            android:id="@+id/textBedTypeField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="0.5dp"
@@ -177,7 +177,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/textEmailValue"
+            android:id="@+id/textBedTypeValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0.5dp"
@@ -188,7 +188,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearBalance"
+        android:id="@+id/linearSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
@@ -197,10 +197,10 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearEmail">
+        app:layout_constraintTop_toBottomOf="@+id/linearBedType">
 
         <TextView
-            android:id="@+id/textBalanceField"
+            android:id="@+id/textSizeField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="0.5dp"
@@ -210,7 +210,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/textBalanceValue"
+            android:id="@+id/textSizeValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft=".5dp"
@@ -230,7 +230,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearBalance">
+        app:layout_constraintTop_toBottomOf="@+id/linearSize">
 
         <EditText
             android:id="@+id/editTopUpAmount"

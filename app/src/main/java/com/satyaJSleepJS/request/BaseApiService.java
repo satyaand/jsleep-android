@@ -4,6 +4,7 @@ import com.satyaJSleepJS.model.Account;
 import com.satyaJSleepJS.model.BedType;
 import com.satyaJSleepJS.model.City;
 import com.satyaJSleepJS.model.Facility;
+import com.satyaJSleepJS.model.Payment;
 import com.satyaJSleepJS.model.Renter;
 import com.satyaJSleepJS.model.Room;
 
@@ -45,4 +46,20 @@ public interface BaseApiService {
                       @Query("city") City city,
                       @Query("address") String address,
                       @Query("bedType") BedType bedType);
+
+    @POST("account/{id}/topUp")
+    Call<Boolean> topUp(@Path("id") int id, @Query("balance") double balance);
+
+    @POST("payment/create")
+    Call<Payment> create(@Query("buyerId") int buyerId,
+                         @Query("renterId") int renterId,
+                         @Query("roomId") int roomid,
+                         @Query("from") String from,
+                         @Query("to") String to);
+
+    @POST("payment/{id}/cancel")
+    Call<Boolean> cancel(@Path("id") int id);
+
+    @POST("payment/{id}/accept")
+    Call<Boolean> accept(@Path("id") int id);
 }

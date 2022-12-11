@@ -1,9 +1,12 @@
 package com.satyaJSleepJS.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
 public class Room extends Serializable {
     @SerializedName("accountId")
@@ -13,7 +16,7 @@ public class Room extends Serializable {
     public String name;
 
     @SerializedName("booked")
-    public ArrayList<Date> booked;
+    public ArrayList<Date> booked = new ArrayList<Date>();
 
     @SerializedName("address")
     public String address;

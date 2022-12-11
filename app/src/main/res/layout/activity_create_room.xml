@@ -124,8 +124,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:buttonTint="#000000"
                 android:ems="4"
-                android:text="Swimming Pool"
+                android:text="SwimmingPool"
                 android:textColorHighlight="#5A5A5A"
                 android:textColorLink="#5A5A5A" />
 
@@ -134,8 +135,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:buttonTint="#000000"
                 android:ems="4"
-                android:text="Fitness Center"
+                android:text="FitnessCenter"
                 android:textColorHighlight="#5A5A5A"
                 android:textColorLink="#5A5A5A" />
 
@@ -155,6 +157,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:buttonTint="#000000"
                 android:ems="0"
                 android:text="Bathtub"
                 android:textColorHighlight="#5A5A5A"
@@ -165,6 +168,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:buttonTint="#000000"
                 android:ems="2"
                 android:text="Balcony"
                 android:textColorHighlight="#5A5A5A"
@@ -175,6 +179,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:buttonTint="#000000"
                 android:ems="4"
                 android:text="Restaurant"
                 android:textColorHighlight="#5A5A5A"
@@ -195,6 +200,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:buttonTint="#000000"
                 android:ems="0"
                 android:text="AC"
                 android:textColorHighlight="#5A5A5A"
@@ -205,6 +211,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:buttonTint="#000000"
                 android:ems="5"
                 android:text="Refrigerator"
                 android:textColorHighlight="#5A5A5A"
@@ -215,6 +222,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:buttonTint="#000000"
                 android:ems="2"
                 android:text="WiFi"
                 android:textColorHighlight="#5A5A5A"
@@ -290,6 +298,5 @@
             android:textAlignment="center"
             android:textSize="30sp"
             android:textStyle="bold" />
-
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

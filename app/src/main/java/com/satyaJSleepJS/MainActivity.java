@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,13 +29,14 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
     ListView lv;
     EditText page;
-    public static int pageSize = 5;
-    public int pageNumber;
-    public ArrayList<Room> rooms = new ArrayList<>();
+    public static int pageSize = 10;
+    public int pageNumber = 1;
+    public static ArrayList<Room> rooms = new ArrayList<>();
     public ArrayAdapter<Room> arrayAdapter;
     BaseApiService mApiService;
     Context mContext;
     Button prev, next, go;
+    public static int selectedRoomIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mApiService= UtilsApi.getApiService();
         mContext = this;
+
+        requestAllRoom(pageNumber, pageSize);
 
         page = findViewById(R.id.editTextPageNumber);
         if(page.getText() == null){
@@ -54,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 --pageNumber;
+                if(pageNumber < 1) pageNumber = 1;
+                page.setText(Integer.toString(pageNumber));
+                requestAllRoom(pageNumber, pageSize);
             }
         });
         next = findViewById(R.id.buttonNextPage);
@@ -61,25 +68,33 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ++pageNumber;
+                page.setText(Integer.toString(pageNumber));
+                requestAllRoom(pageNumber, pageSize);
             }
         });
         go = findViewById(R.id.buttonGoPage);
         go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                lv = findViewById(R.id.list_view);
-                if(pageNumber < 0) pageNumber = 1;
+                pageNumber = Integer.parseInt(page.getText().toString());
                 requestAllRoom(pageNumber, pageSize);
-                arrayAdapter = new ArrayAdapter<>(mContext, android.R.layout.simple_list_item_1, rooms);
-                lv.setAdapter(arrayAdapter);
+                page.setText(Integer.toString(pageNumber));
             }
         });
 
-        lv = findViewById(R.id.list_view);
-        if(pageNumber < 0) pageNumber = 1;
-        requestAllRoom(pageNumber, pageSize);
-        arrayAdapter = new ArrayAdapter<>(mContext, android.R.layout.simple_list_item_1, rooms);
-        lv.setAdapter(arrayAdapter);
+    lv = findViewById(R.id.list_view);
+    lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            selectedRoomIndex = i;
+            Intent in = new Intent(MainActivity.this, DetailRoomActivity.class);
+            startActivity(in);
+        }
+    });
+    }
+
+    public static Room getSelectedRoom(){
+        return rooms.get(selectedRoomIndex);
     }
 
     @Override
@@ -111,15 +126,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void requestAllRoom(int pageNum, int pageSz){
-        mApiService.getAllRoom(pageNum, pageSz).enqueue(new Callback<ArrayList<Room>>() {
+        lv = findViewById(R.id.list_view);
+        mApiService.getAllRoom(pageNum - 1, pageSz - 1).enqueue(new Callback<ArrayList<Room>>() {
             @Override
             public void onResponse(Call<ArrayList<Room>> call, Response<ArrayList<Room>> response) {
                 rooms = response.body();
+                arrayAdapter = new ArrayAdapter<>(mContext, android.R.layout.simple_list_item_1, rooms);
+                lv.setAdapter(arrayAdapter);
             }
 
             @Override
             public void onFailure(Call<ArrayList<Room>> call, Throwable t) {
-                Toast.makeText(mContext, "Failed to fetch rooms data.", Toast.LENGTH_SHORT);
+                Toast.makeText(mContext, "Failed to fetch rooms data.", Toast.LENGTH_SHORT).show();
             }
         });
     }
